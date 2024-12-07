@@ -5,12 +5,29 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "mocha"
+    "test": "nyc mocha"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "chai": "^5.1.2",
-    "mocha": "^11.0.1"
+    "mocha": "^11.0.1",
+    "nyc": "^17.1.0"
+  },
+  "nyc": {
+    "include": [
+      "src/*.js"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "report-dir": "./coverage",
+    "all": true,
+    "check-coverage": true,
+    "branches": 0,
+    "lines": 0,
+    "functions": 0,
+    "statements": 0
   }
 }
