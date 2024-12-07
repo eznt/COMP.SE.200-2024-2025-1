@@ -139,4 +139,9 @@ describe("isEmpty function", () => {
     const obj = Object.create(null); // No prototype
     expect(isEmpty(obj)).to.be.true;
   });
+
+  it("should return true for an object that is its own prototype", () => {
+    const objectProto = Object.prototype;
+    expect(isEmpty(objectProto)).to.be.true;
+  });
 });

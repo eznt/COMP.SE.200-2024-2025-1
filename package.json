@@ -21,7 +21,7 @@
     "reporter": [
       "lcov",
       "text",
-      "json"
+      "html"
     ],
     "report-dir": "./coverage",
     "all": true
