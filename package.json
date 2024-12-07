@@ -18,10 +18,6 @@
     "include": [
       "src/*.js"
     ],
-    "reporter": [
-      "lcov",
-      "text-summary"
-    ],
     "report-dir": "./coverage",
     "all": true,
     "check-coverage": true,
