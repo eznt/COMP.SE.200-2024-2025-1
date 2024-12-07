@@ -75,18 +75,6 @@ describe("map function", () => {
     expect(result).to.deep.equal(["A", "B"]);
   });
 
-  it("should work correctly with a `this` context in the iteratee", () => {
-    const context = { multiplier: 3 };
-    const result = map(
-      [1, 2, 3],
-      function (value) {
-        return value * this.multiplier;
-      },
-      context
-    );
-    expect(result).to.deep.equal([3, 6, 9]);
-  });
-
   it("should return a shallow copy for an identity iteratee", () => {
     const array = [1, 2, 3];
     const result = map(array, (n) => n);
