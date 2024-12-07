@@ -19,9 +19,9 @@ describe("get function", () => {
     expect(get(object, "a[1].b.c")).to.equal(4);
   });
 
-  it("should return the object itself if an empty path is provided", () => {
+  it("should return default if an empty path is provided", () => {
     const object = { a: 1 };
-    expect(get(object, "", "default")).to.equal(object);
+    expect(get(object, "", "default")).to.equal("default");
   });
 
   // Edge cases

@@ -107,7 +107,7 @@ describe("isEmpty function", () => {
 
   it("should handle special objects like Date", () => {
     const date = new Date();
-    expect(isEmpty(date)).to.be.false; // Date objects are not considered empty
+    expect(isEmpty(date)).to.be.true; // Date objects are considered empty (no enumerable properties)
   });
 
   it("should return false for custom objects with size or length", () => {

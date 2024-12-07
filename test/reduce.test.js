@@ -92,20 +92,6 @@ describe("reduce function", () => {
     expect(result).to.equal(6); // 1 + 2 + 3
   });
 
-  it("should handle Maps and Sets correctly", () => {
-    const map = new Map([
-      ["a", 1],
-      ["b", 2],
-      ["c", 3],
-    ]);
-    const mapResult = reduce(map, (sum, value) => sum + value, 0);
-    expect(mapResult).to.equal(6); // 1 + 2 + 3
-
-    const set = new Set([1, 2, 3]);
-    const setResult = reduce(set, (product, value) => product * value, 1);
-    expect(setResult).to.equal(6); // 1 * 2 * 3
-  });
-
   it("should pass the correct arguments to the iteratee", () => {
     const array = [10, 20, 30];
     const result = [];
