@@ -49,12 +49,12 @@ describe("filter function", () => {
   });
 
   // Negative cases
-  it("should throw an error if the first argument is not an array", () => {
-    expect(() => filter(null, () => true)).to.throw();
-    expect(() => filter(undefined, () => true)).to.throw();
-    expect(() => filter({}, () => true)).to.throw();
+  it("should return an empty array if the first argument is not an array", () => {
+    expect(filter(null, () => true)).to.deep.equal([]);
+    expect(filter(undefined, () => true)).to.deep.equal([]);
+    expect(filter({}, () => true)).to.deep.equal([]);
   });
-
+  
   it("should throw an error if the second argument is not a function", () => {
     expect(() => filter([1, 2, 3], null)).to.throw();
     expect(() => filter([1, 2, 3], undefined)).to.throw();

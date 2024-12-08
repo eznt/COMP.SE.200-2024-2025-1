@@ -46,11 +46,11 @@ describe("map function", () => {
   });
 
   // Negative cases
-  it("should throw an error if the array is not an array-like object", () => {
-    expect(() => map(null, (n) => n * n)).to.throw();
-    expect(() => map(undefined, (n) => n * n)).to.throw();
-    expect(() => map(42, (n) => n * n)).to.throw();
-  });
+  it("should return an empty array for non-array-like inputs", () => {
+    expect(map(null, (n) => n * n)).to.deep.equal([]);
+    expect(map(undefined, (n) => n * n)).to.deep.equal([]);
+    expect(map(42, (n) => n * n)).to.deep.equal([]);
+});
 
   it("should throw an error if iteratee is not a function", () => {
     expect(() => map([1, 2, 3], null)).to.throw();

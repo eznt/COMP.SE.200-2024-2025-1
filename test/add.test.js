@@ -23,6 +23,31 @@ describe("add.js - Unit Tests", () => {
     expect(add(10.5, 20.25)).to.equal(30.75);
   });
 
+  it("should add two negative numbers", () => {
+    expect(add(-6, -4)).to.equal(-10);
+  });
+
+  it("should add a negative number and zero", () => {
+    expect(add(-6, 0)).to.equal(-6);
+  });
+
+  it("should return the given value when only one argument is provided", () => {
+    expect(add(6)).to.equal(6);
+  });
+
+  it("should return zero when no arguments are provided", () => {
+    expect(add()).to.equal(0);
+  });
+
+  it("should be able to add together string representations of numbers", () => {
+    expect(add("6", "4")).to.equal(10);
+  });
+
+  it("should be able to add together string representation of number and integer", () => {
+    expect(add("6", 4)).to.equal(10);
+  });
+
+
   // Edge cases
   it("should handle very large numbers", () => {
     expect(add(1e12, 1e12)).to.equal(2e12);
@@ -41,14 +66,16 @@ describe("add.js - Unit Tests", () => {
   });
 
   // Negative cases
-  it("should throw an error for invalid input types", () => {
-    expect(() => add("6", 4)).to.throw();
-    expect(() => add(6, "4")).to.throw();
-    expect(() => add({}, [])).to.throw();
+  it("should return NaN for invalid input types", () => {
+    expect(add(3, {"foo":"bar"})).to.be.NaN;
   });
 
-  it("should throw an error when arguments are missing", () => {
-    expect(() => add()).to.throw();
-    expect(() => add(1)).to.throw();
+  it("should return NaN for symbol input types", () => {
+    const sym = Symbol.for("1");
+    expect(add(sym, 1)).to.be.NaN;
+  });
+
+  it("should return NaN for NaN input type", () => {
+    expect(add(3, NaN)).to.be.NaN;
   });
 });

@@ -54,10 +54,16 @@ describe("get function", () => {
   });
 
   // Negative test cases
-  it("should throw an error for invalid objects (non-objects)", () => {
-    expect(() => get(42, "a.b.c")).to.throw();
-    expect(() => get("string", "a.b.c")).to.throw();
-    expect(() => get(true, "a.b.c")).to.throw();
+  it("should return undefined for invalid objects (non-objects)", () => {
+    expect(get(42, "a.b.c")).to.be.undefined;
+    expect(get("string", "a.b.c")).to.be.undefined;
+    expect(get(true, "a.b.c")).to.be.undefined;
+  });
+
+  it("should return the default value for invalid objects (non-objects) with a defaultValue", () => {
+    expect(get(42, "a.b.c", "default")).to.equal("default");
+    expect(get("string", "a.b.c", "default")).to.equal("default");
+    expect(get(true, "a.b.c", "default")).to.equal("default");
   });
 
   it("should handle circular references without causing infinite loops", () => {

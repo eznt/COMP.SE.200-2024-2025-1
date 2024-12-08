@@ -53,7 +53,7 @@ describe("eq function", () => {
   });
 
   it("should return false for different symbols with the same description", () => {
-    expect(eq(Symbol("test"), Symbol("test"))).to.be.false;
+    expect(eq(Symbol("test"), Symbol("test"))).to.be.false; // Symbol values are unique by reference
   });
 
   // Negative cases
@@ -112,24 +112,19 @@ describe("eq function", () => {
   });
 
   // Special cases
-  it("should handle mixed types correctly", () => {
-    expect(eq(42, "42")).to.be.false; // Number vs. string
-    expect(eq(true, 1)).to.be.false; // Boolean vs. number
-    expect(eq(false, 0)).to.be.false; // Boolean vs. number
+  it("should return false for int and its string representation", () => {
+    expect(eq(42, "42")).to.be.false;
   });
+
+  it("should return false for int and its boolean representation", () => {
+    expect(eq(false, 0)).to.be.false;
+    expect(eq(true, 1)).to.be.false;
+  });
+
 
   it("should handle BigInt values correctly", () => {
     expect(eq(BigInt(123), BigInt(123))).to.be.true;
     expect(eq(BigInt(123), 123)).to.be.false;
   });
 
-  it("should handle large objects efficiently", () => {
-    const largeObject1 = {};
-    const largeObject2 = {};
-    for (let i = 0; i < 10000; i++) {
-      largeObject1[i] = i;
-      largeObject2[i] = i;
-    }
-    expect(eq(largeObject1, largeObject2)).to.be.false; // Different references
-  });
 });

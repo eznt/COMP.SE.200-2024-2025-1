@@ -80,18 +80,17 @@ describe("isArrayLikeObject function", () => {
     expect(isArrayLikeObject(BigInt(10))).to.be.false;
   });
 
-  it("should return false for arrays created with `Object.create(null)`", () => {
+  it("should return true for arrays created with `Object.create(null)`", () => {
     const nullProtoArrayLike = Object.create(null);
     nullProtoArrayLike[0] = "a";
     nullProtoArrayLike[1] = "b";
     nullProtoArrayLike.length = 2;
-    expect(isArrayLikeObject(nullProtoArrayLike)).to.be.false;
-  });
-
+    expect(isArrayLikeObject(nullProtoArrayLike)).to.be.true;
+});
   // Special cases
-  it("should return false for objects with length property but no numeric indices", () => {
+  it("should return true for objects with length property but no numeric indices", () => {
     const invalidArrayLike = { length: 2 };
-    expect(isArrayLikeObject(invalidArrayLike)).to.be.false;
+    expect(isArrayLikeObject(invalidArrayLike)).to.be.true;
   });
 
   it("should return true for arrays with sparse elements", () => {

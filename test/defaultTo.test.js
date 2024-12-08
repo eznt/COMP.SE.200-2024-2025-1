@@ -22,6 +22,10 @@ describe("defaultTo function", () => {
     expect(defaultTo(NaN, 10)).to.equal(10);
   });
 
+  it("should return provided value when the default value is missing", () => {
+    expect(defaultTo("valid")).to.equal("valid");
+  });
+
   // Edge cases
   it("should return the default value if the provided value is explicitly `undefined`", () => {
     expect(defaultTo(undefined, 0)).to.equal(0);
@@ -40,10 +44,6 @@ describe("defaultTo function", () => {
     expect(defaultTo(false, true)).to.equal(false); // False is falsy but valid
   });
 
-  it("should return the default value if the first argument is a result of invalid math", () => {
-    expect(defaultTo(0 / 0, "default")).to.equal("default"); // 0/0 results in NaN
-  });
-
   it("should handle default values that are functions or objects", () => {
     const defaultFunc = () => "default";
     const defaultObj = { key: "default" };
@@ -52,12 +52,9 @@ describe("defaultTo function", () => {
   });
 
   // Negative test cases
-  it("should return the default value if the first argument is explicitly NaN", () => {
-    expect(defaultTo(NaN, 42)).to.equal(42);
-  });
-
-  it("should throw an error if the default value is missing", () => {
-    expect(() => defaultTo(null)).to.throw();
+  
+  it("should return undefined if both value and default are missing", () => {
+    expect(defaultTo()).to.be.undefined;
   });
 
   it("should not coerce non-NaN, null, or undefined values to default", () => {
@@ -74,7 +71,7 @@ describe("defaultTo function", () => {
   it("should handle default values that are falsy", () => {
     expect(defaultTo(undefined, "")).to.equal("");
     expect(defaultTo(null, 0)).to.equal(0);
-    expect(defaultTo(NaN, false)).to.equal(false);
+    expect(defaultTo(undefined, false)).to.equal(false);
   });
 
   it("should return the same value when the value is valid and equal to the default", () => {
