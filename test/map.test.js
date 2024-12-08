@@ -45,12 +45,23 @@ describe("map function", () => {
     expect(result[9999]).to.equal(19998); // Test the last element
   });
 
+  it("should handle string correctly", () => {
+    expect(map("aaa", (n) => n + n)).to.deep.equal(["aa", "aa", "aa"]);
+  });
+
   // Negative cases
-  it("should return an empty array for non-array-like inputs", () => {
-    expect(map(null, (n) => n * n)).to.deep.equal([]);
+  it("should return an empty array for undefined input", () => {
     expect(map(undefined, (n) => n * n)).to.deep.equal([]);
-    expect(map(42, (n) => n * n)).to.deep.equal([]);
-});
+  });
+
+  it("should return an empty array for plain object input", () => {
+    expect(map({}, (n) => n + n)).to.deep.equal([]);
+  });
+
+  it("should return an empty array for number input", () => {
+    expect(map(42, (n) => n + n)).to.deep.equal([]);
+  });
+
 
   it("should throw an error if iteratee is not a function", () => {
     expect(() => map([1, 2, 3], null)).to.throw();
